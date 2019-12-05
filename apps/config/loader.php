@@ -17,6 +17,7 @@ $loader->registerNamespaces(array(
 	 * Load common classes
 	 */
 	'Idy\Common\Events' => APP_PATH . '/common/events',
+	'Idy\Common\Controllers' => APP_PATH . '/common/controllers',
 ));
 
 $loader->register();
