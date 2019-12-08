@@ -9,19 +9,25 @@ use Idy\Yudisium\Domain\Model\PeriodeYudisium;
 class YudisiumController extends WebController
 {
     protected $createNewPeriodeYudisiumService;
+    protected $getPeriodeYudisiumService;
+    protected $getPeriodeYudisiumLulusService;
     
     public function initialize()
     {
         $this->createNewPeriodeYudisiumService = $this->di->get('createNewPeriodeYudisiumService');
+        $this->getPeriodeYudisiumService = $this->di->get('getPeriodeYudisiumService');
     }
 
     public function indexAction()
     {
-        // $r = $this->createNewPeriodeYudisiumService->execute(new CreateNewPeriodeYudisiumRequest(1, 2, 3, 4, 5));
-        
-        // $this->send(['res' => $r]);
-        // $this->view->datas = $datas;
+        $this->view->datas = $this->getPeriodeYudisiumService->execute();
         return $this->view->pick('home');
+    }
+
+    public function lulusAction()
+    {
+        $this->view->datas = $this->GetPeriodeYudisiumLulusService->execute();
+        return $this->view->pick('lulus');
     }
 
     public function addPostAction()

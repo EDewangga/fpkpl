@@ -2,6 +2,7 @@
 
 use Idy\Yudisium\Infrastructure\SqlPeriodeYudisiumRepository;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumService;
+use Idy\Yudisium\Application\GetPeriodeYudisiumService;
 use Phalcon\Mvc\View;
 
 $di['voltServiceMail'] = function($view) use ($di) {
@@ -58,3 +59,12 @@ $di->setShared('sql_yudisium_repository', function () {
 $di->set('createNewPeriodeYudisiumService', function () use ($di) {
     return new CreateNewPeriodeYudisiumService($di->get('sql_yudisium_repository'));
 });
+
+$di->set('getPeriodeYudisiumService', function () use ($di) {
+    return new GetPeriodeYudisiumService($di->get('sql_yudisium_repository'));
+});
+
+$di->set('GetPeriodeYudisiumLulusService', function () use ($di) {
+    return new GetPeriodeYudisiumLulusService($di->get('sql_yudisium_repository'));
+});
+

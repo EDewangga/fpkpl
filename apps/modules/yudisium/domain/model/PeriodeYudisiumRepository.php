@@ -6,4 +6,6 @@ use Idy\Yudisium\Domain\Model;
 interface PeriodeYudisiumRepository
 {
     public function create(PeriodeYudisium $periodeYudisium);
+    public function all();
+    public function lulus();
 }

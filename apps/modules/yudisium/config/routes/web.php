@@ -23,3 +23,10 @@ $router->addPost('/yudisium/add/post', [
     'controller' => 'yudisium',
     'action' => 'addPost'
 ]);
+
+$router->addPost('/yudisium/lulus', [
+    'namespace' => $namespace,
+    'module' => 'yudisium',
+    'controller' => 'yudisium',
+    'action' => 'getLulus'
+]);
