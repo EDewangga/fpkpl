@@ -6,16 +6,16 @@ class PeriodeYudisium
 {
     private $wisuda;
     private $urutan;
-    private $tanggalAwal;
-    private $tanggalAkhir;
+    private $tanggalawal;
+    private $tanggalakhir;
     private $status;
     
-    public function __construct($wisuda, $urutan, $tanggalAwal, $tanggalAkhir, Status $status)
+    public function __construct($wisuda, $urutan, $tanggalawal, $tanggalakhir, Status $status)
     {
         $this->wisuda = $wisuda;
         $this->urutan = $urutan;
-        $this->tanggalAwal = $tanggalAwal;
-        $this->tanggalAkhir = $tanggalAkhir;
+        $this->tanggalawal = $tanggalawal;
+        $this->tanggalakhir = $tanggalakhir;
         $this->status = $status;
     }
 
@@ -29,14 +29,14 @@ class PeriodeYudisium
         return $this->urutan;
     }
 
-    public function tanggalAwal()
+    public function tanggalawal()
     {
-        return $this->tanggalAwal;
+        return $this->tanggalawal;
     }
 
-    public function tanggalAkhir()
+    public function tanggalakhir()
     {
-        return $this->tanggalAkhir;
+        return $this->tanggalakhir;
     }
 
     public function status()

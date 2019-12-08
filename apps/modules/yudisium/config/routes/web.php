@@ -17,9 +17,9 @@ $router->addGet('/yudisium/add', [
     'action' => 'add'
 ]);
 
-$router->addPost('/yudisium/add/new', [
+$router->addPost('/yudisium/add/post', [
     'namespace' => $namespace,
     'module' => 'yudisium',
     'controller' => 'yudisium',
-    'action' => 'addTest'
+    'action' => 'addPost'
 ]);

@@ -2,6 +2,7 @@
 
 namespace Idy\Yudisium\Application;
 
+
 class CreateNewPeriodeYudisiumRequest
 {
     private $wisuda;

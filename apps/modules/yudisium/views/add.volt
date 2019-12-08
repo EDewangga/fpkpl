@@ -8,7 +8,8 @@
 
 {% block content %}
 <br><br>
-<form action="{{url('yudisium/add/new')}}" method="POST">
+<p><?php $this->flashSession->output() ?></p>
+<form action="{{url('yudisium/add/post')}}" method="POST">
     <div class="form-group">
       <label for="wisuda">wisuda</label>
       <input type="text" class="form-control" id="wisuda" name="wisuda" placeholder="wisuda" required>
@@ -18,12 +19,12 @@
       <input type="text" class="form-control" id="urutan" name="urutan" placeholder="" required>
     </div>
     <div class="form-group">
-        <label for="tanggalAwal">Tanggal Awal</label>
-        <input type="text" class="form-control" id="tanggalAwal" name="tanggalAwal" placeholder="" required>
+        <label for="tanggalawal">Tanggal Awal</label>
+        <input type="text" class="form-control" id="tanggalawal" name="tanggalawal" placeholder="" required>
       </div>
       <div class="form-group">
         <label for="tanggalAkhir">Tanggal Akhir</label>
-        <input type="text" class="form-control" id="tanggalAkhir" name="tanggalAkhir" placeholder="" required>
+        <input type="text" class="form-control" id="tanggalakhir" name="tanggalakhir" placeholder="" required>
       </div>
       <div class="form-group">
         <label for="status">status</label>

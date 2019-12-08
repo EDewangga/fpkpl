@@ -2,13 +2,15 @@
 
 namespace Idy\Yudisium\Application;
 
-class CreateNewPeriodeYudisiumResponse
+class PeriodeYudisiumResponse
 {
     private $response;
+    private $code;
 
-    public function __construct($response)
+    public function __construct($response, $code = 200)
     {
         $this->response = $response;
+        $this->code = $code;
     }
 
     public function getResponse(){
@@ -17,5 +19,10 @@ class CreateNewPeriodeYudisiumResponse
 
   	public function setResponse($response){
 	  	$this->response = $response;
+    }
+
+    public function getCode()
+    {
+      return $this->code;
     }
 }
