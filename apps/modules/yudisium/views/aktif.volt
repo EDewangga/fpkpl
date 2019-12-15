@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block content %}
-<h1>TEST</h1>
-<!-- <table class="table">
+<h1>Status Lulus</h1>
+<table class="table">
     <thead class="thead-dark">
       <tr>
         <th scope="col">wisuda</th>
@@ -31,7 +31,7 @@
       {% endfor %}
     </tbody>
   </table>
-  <a href="{{url('yudisium/add/')}}" role="button" class="btn btn-primary btn-lg">Tambah Data yudisium</a>&emsp; -->
+  <a href="{{url('yudisium/add/')}}" role="button" class="btn btn-primary btn-lg">Tambah Data yudisium</a>&emsp;
 {% endblock %}
 
 {% block scripts %}

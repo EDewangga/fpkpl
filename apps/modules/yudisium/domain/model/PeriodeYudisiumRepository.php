@@ -7,5 +7,6 @@ interface PeriodeYudisiumRepository
 {
     public function create(PeriodeYudisium $periodeYudisium);
     public function all();
-    public function lulus();
+    public function aktif();
+    public function tidakAktif();
 }

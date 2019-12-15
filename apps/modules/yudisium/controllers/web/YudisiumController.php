@@ -10,7 +10,8 @@ class YudisiumController extends WebController
 {
     protected $createNewPeriodeYudisiumService;
     protected $getPeriodeYudisiumService;
-    protected $getPeriodeYudisiumLulusService;
+    protected $getPeriodeYudisiumAktifService;
+    protected $GetPeriodeYudisiumTidakAktifService;
     
     public function initialize()
     {
@@ -24,10 +25,16 @@ class YudisiumController extends WebController
         return $this->view->pick('home');
     }
 
-    public function lulusAction()
+    public function aktifAction()
     {
-        $this->view->datas = $this->GetPeriodeYudisiumLulusService->execute();
-        return $this->view->pick('lulus');
+        $this->view->datas = $this->GetPeriodeYudisiumAktifService->execute();
+        return $this->view->pick('aktif');
+    }
+
+    public function tidakAktifAction()
+    {
+        $this->view->datas = $this->GetPeriodeYudisiumTidakAktifService->execute();
+        return $this->view->pick('tidakAktif');
     }
 
     public function addPostAction()

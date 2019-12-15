@@ -24,9 +24,16 @@ $router->addPost('/yudisium/add/post', [
     'action' => 'addPost'
 ]);
 
-$router->addPost('/yudisium/lulus', [
+$router->addGet('/yudisium/aktif', [
     'namespace' => $namespace,
     'module' => 'yudisium',
     'controller' => 'yudisium',
-    'action' => 'getLulus'
+    'action' => 'Aktif'
+]);
+
+$router->addGet('/yudisium/tidakAktif', [
+    'namespace' => $namespace,
+    'module' => 'yudisium',
+    'controller' => 'yudisium',
+    'action' => 'tidakAktif'
 ]);

@@ -46,12 +46,23 @@ class SqlPeriodeYudisiumRepository implements PeriodeYudisiumRepository
         return $this->dbManager->query($statement)->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public function lulus()
+    public function aktif()
     {
         $statement = sprintf("SELECT * FROM periodeyudisium");
         $statement = sprintf("SELECT * FROM periodeyudisium WHERE status = :status");
         $param = [
-            'status' => 'lulus'
+            'status' => 'aktif'
+        ];
+
+        return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function tidakAktif()
+    {
+        $statement = sprintf("SELECT * FROM periodeyudisium");
+        $statement = sprintf("SELECT * FROM periodeyudisium WHERE status = :status");
+        $param = [
+            'status' => 'tidak aktif'
         ];
 
         return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);

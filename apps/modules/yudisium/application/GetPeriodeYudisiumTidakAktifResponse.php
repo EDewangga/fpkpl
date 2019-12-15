@@ -2,7 +2,7 @@
 
 namespace Idy\Yudisium\Application;
 
-class GetPeriodeYudisiumLulusResponse
+class GetPeriodeYudisiumTidakAktifResponse
 {
     private $response;
     private $code;

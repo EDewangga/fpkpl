@@ -3,10 +3,10 @@
 namespace Idy\Yudisium\Application;
 
 use Idy\Yudisium\Domain\Model\PeriodeYudisiumRepository;
-use Idy\Yudisium\Application\GetPeriodeYudisiumLulusResponse;
+use Idy\Yudisium\Application\GetPeriodeYudisiumAktifResponse;
 
 
-class GetPeriodeYudisiumLulusService 
+class GetPeriodeYudisiumAktifService 
 {
     private $periodeYudisiumRepository;
 
@@ -17,8 +17,8 @@ class GetPeriodeYudisiumLulusService
 
     public function execute()
     {
-        $data = $this->periodeYudisiumRepository->lulus();
+        $data = $this->periodeYudisiumRepository->aktif();
         
-        return new GetPeriodeYudisiumLulusResponse($data);
+        return new GetPeriodeYudisiumAktifResponse($data);
     }
 }
