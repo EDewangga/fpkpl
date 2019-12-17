@@ -4,7 +4,7 @@ namespace Idy\Common\Controllers;
 
 use Phalcon\Mvc\Controller;
 
-class BaseController extends Controller
+class class BaseController extends Controller
 {    
 
 	public function isDevMode()
