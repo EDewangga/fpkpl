@@ -8,7 +8,7 @@ class Mahasiswa
     private $nama;
     private $ipk;
     private $wisuda;
-
+    private $status;
     
     public function __construct($nrp, $nama, $ipk, $wisuda)
     {
@@ -37,5 +37,17 @@ class Mahasiswa
         return $this->wisuda;
     }
 
+    public function status()
+    {
+        return $this->status;
+    }
 
+    public function setStatus(Syarat $syarat)
+    {
+        if ($syarat->nilai() > $this->ipk) {
+            $this->status = 'Tidak Lulus';
+        } else {
+            $this->status = 'Lulus';
+        }
+    }
 }

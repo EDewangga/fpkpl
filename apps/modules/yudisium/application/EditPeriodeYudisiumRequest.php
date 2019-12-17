@@ -3,7 +3,7 @@
 namespace Idy\Yudisium\Application;
 
 
-class CreateNewPeriodeYudisiumRequest
+class EditPeriodeYudisiumRequest
 {
     private $wisuda;
     private $urutan;

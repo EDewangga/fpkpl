@@ -45,7 +45,7 @@ $router->addPost('/yudisium/create-laporan', [
     'action' => 'createLaporan'
 ]);
 
-$router->addGet('/yudisium/edit', [
+$router->addGet('/yudisium/edit/{yudisium}', [
     'namespace' => $namespace,
     'module' => 'yudisium',
     'controller' => 'yudisium',
@@ -86,3 +86,11 @@ $router->addPost('/mahasiswa/add/post', [
     'controller' => 'yudisium',
     'action' => 'createMahasiswaPost'
 ]);
+
+$router->addGet('/yudisium/mahasiswa/{wisuda}', [
+    'namespace' => $namespace,
+    'module' => 'yudisium',
+    'controller' => 'yudisium',
+    'action' => 'getWisuda'
+]);
+

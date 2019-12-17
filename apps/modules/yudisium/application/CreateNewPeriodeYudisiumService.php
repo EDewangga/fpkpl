@@ -6,7 +6,7 @@ use Idy\Yudisium\Domain\Model\PeriodeYudisiumRepository;
 use Idy\Yudisium\Domain\Model\PeriodeYudisium;
 use Idy\Yudisium\Domain\Model\Status;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumResponse;
-
+use Idy\Yudisium\Domain\Model\Wisuda;
 
 class CreateNewPeriodeYudisiumService
 {
@@ -19,7 +19,7 @@ class CreateNewPeriodeYudisiumService
 
     public function execute(CreateNewPeriodeYudisiumRequest $request)
     {
-        $yudisium = new PeriodeYudisium($request->wisuda(), $request->urutan(), $request->tanggalawal(), $request->tanggalakhir(), new Status($request->status()));
+        $yudisium = new PeriodeYudisium(new Wisuda($request->wisuda()), $request->urutan(), $request->tanggalawal(), $request->tanggalakhir(), new Status($request->status()));
         
         $response = $this->periodeYudisiumRepository->create($yudisium);
 

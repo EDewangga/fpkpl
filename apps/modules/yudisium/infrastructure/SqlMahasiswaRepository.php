@@ -26,16 +26,28 @@ class SqlMahasiswaRepository implements MahasiswaRepository
 
     public function create(Mahasiswa $mahasiswa)
     {
-        $statement = sprintf("INSERT INTO mahasiswa (nrp, nama, ipk, wisuda) VALUES(:nrp, :nama, :ipk, :wisuda)");
+        $statement = sprintf("INSERT INTO mahasiswa (nrp, nama, ipk, wisuda, status) VALUES(:nrp, :nama, :ipk, :wisuda, :status)");
 
         $params = [
             'nrp' => intval($mahasiswa->nrp()), 
             'nama' => $mahasiswa->nama(),
             'ipk' => $mahasiswa->ipk(),
-            'wisuda' => $mahasiswa->wisuda()->wisuda()
+            'wisuda' => $mahasiswa->wisuda()->wisuda(),
+            'status' => $mahasiswa->status()
         ];
         
         return $this->dbManager->execute($statement, $params);
+    }
+
+    public function mahasiswaInPeriodeYudisium(Wisuda $wisuda)
+    {
+        $statement = sprintf("SELECT * FROM mahasiswa WHERE wisuda = :wisuda");
+        $param = [
+            'wisuda' => $wisuda->wisuda()
+        ];
+
+        return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);
+
     }
     
 }

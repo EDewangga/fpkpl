@@ -10,4 +10,6 @@ interface PeriodeYudisiumRepository
     public function aktif();
     public function tidakAktif();
     public function download(Status $status);
+    public function getYudisium(Wisuda $wisuda);
+    public function edit(PeriodeYudisium $periodeYudisium);
 }

@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-return datas.getResponse()
+<div class="container">
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -27,6 +27,7 @@ return datas.getResponse()
       {% endfor %}
     </tbody>
   </table>
+</div>
 {% endblock %}
 
 {% block scripts %}

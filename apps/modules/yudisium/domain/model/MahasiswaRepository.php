@@ -7,4 +7,5 @@ interface MahasiswaRepository
 {
     public function all();
     public function create(Mahasiswa $mahasiswa);
+    public function mahasiswaInPeriodeYudisium(Wisuda $wisuda);
 }

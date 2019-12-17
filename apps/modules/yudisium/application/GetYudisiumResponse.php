@@ -2,7 +2,7 @@
 
 namespace Idy\Yudisium\Application;
 
-class CreateNewPeriodeYudisiumResponse
+class GetYudisiumResponse
 {
     private $response;
     private $code;

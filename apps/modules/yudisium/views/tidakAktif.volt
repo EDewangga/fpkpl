@@ -8,8 +8,8 @@
 {% endblock %}
 
 {% block content %}
-datas.getResponse()
-<!-- <h1>Status Lulus</h1>
+
+<h1>Status Lulus</h1>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -36,7 +36,7 @@ datas.getResponse()
   <form action="{{url('yudisium/create-laporan')}}" method="POST">
     <button type="submit" class="btn btn-primary">Download</button>
     <input type="hidden" name="status" value="tidak aktif" >
-  </form> -->
+  </form>
 {% endblock %}
 
 {% block scripts %}

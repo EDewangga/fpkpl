@@ -5,6 +5,7 @@ namespace Idy\Yudisium\Infrastructure;
 use Idy\Yudisium\Domain\Model\PeriodeYudisium;
 use Idy\Yudisium\Domain\Model\PeriodeYudisiumRepository;
 use Idy\Yudisium\Domain\Model\status;
+use Idy\Yudisium\Domain\Model\Wisuda;
 use Phalcon\Di;
 use PDO;
 
@@ -78,5 +79,30 @@ class SqlPeriodeYudisiumRepository implements PeriodeYudisiumRepository
 
         return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
+    public function getYudisium(Wisuda $wisuda)
+    {
+        $statement = sprintf("SELECT * FROM periodeyudisium WHERE wisuda = :wisuda");
+        $param = [
+            'wisuda' => $wisuda->wisuda()
+        ];
+
+        return $this->dbManager->query($statement, $param)->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function edit(PeriodeYudisium $periodeYudisium)
+    {
+        $statement = sprintf("UPDATE periodeyudisium SET urutan=:urutan, tanggalawal=:tanggalawal, tanggalakhir=:tanggalakhir, status=:status WHERE wisuda=:wisuda ");
+
+        $params = [
+            'wisuda' => intval($periodeYudisium->wisuda()),
+            'urutan' => intval($periodeYudisium->urutan()), 
+            'tanggalawal' => $periodeYudisium->tanggalAwal(),
+            'tanggalakhir' => $periodeYudisium->tanggalAkhir(),
+            'status' => $periodeYudisium->status()->status()
+            
+        ];
+        
+        return $this->dbManager->execute($statement, $params);
+    }
 }

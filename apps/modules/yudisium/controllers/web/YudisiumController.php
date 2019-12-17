@@ -6,6 +6,7 @@ use Idy\Common\Controllers\WebController;
 use Idy\Yudisium\Application\CreateLaporanPeriodeYudisiumRequest;
 use Idy\Yudisium\Application\CreateNewMahasiswaRequest;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumRequest;
+use Idy\Yudisium\Application\EditPeriodeYudisiumRequest;
 use Idy\Yudisium\Domain\Model\PeriodeYudisium;
 
 class YudisiumController extends WebController
@@ -18,6 +19,10 @@ class YudisiumController extends WebController
     protected $getSyaratService;
     protected $getMahasiswaService;
     protected $CreateNewMahasiswaService;
+    protected $getMahasiswaPeriodeService;
+    protected $editPeriodeYudisiumService;
+    protected $GetYudisiumService;
+    
     
     
     public function initialize()
@@ -30,8 +35,9 @@ class YudisiumController extends WebController
         $this->getSyaratService = $this->di->get('getSyaratService');
         $this->getMahasiswaService = $this->di->get('getMahasiswaService');
         $this->CreateNewMahasiswaService = $this->di->get('CreateNewMahasiswaService');
-
-        
+        $this->getMahasiswaPeriodeService = $this->di->get('getMahasiswaPeriodeService');
+        $this->editPeriodeYudisiumService = $this->di->get('editPeriodeYudisiumService');      
+        $this->GetYudisiumService = $this->di->get('getYudisiumService');      
     }
 
     public function indexAction()
@@ -132,6 +138,47 @@ class YudisiumController extends WebController
 
         $this->response->redirect('/mahasiswa/add');
         // return $response->getResponse();
+    }
+
+    public function getWisudaAction($wisuda)
+    {
+        $data = $this->getMahasiswaPeriodeService->execute($wisuda);
+        $this->view->datas = $data;
+        // return $this->send(['ok'=> $data->getResponse()]);
+        return $this->view->pick('mahasiswaPeriode');
+    }
+
+    public function editPostAction()
+    {
+        $wisuda = $this->request->getPost('wisuda');
+        $urutan = $this->request->getPost('urutan');
+        $tanggalawal = $this->request->getPost('tanggalawal');
+        $tanggalakhir = $this->request->getPost('tanggalakhir');
+        $status = $this->request->getPost('status');
+        // return $wisuda. $urutan. $tanggalawal. $tanggalakhir. $status;
+        $request = new EditPeriodeYudisiumRequest($wisuda, $urutan, $tanggalawal, $tanggalakhir, $status);
+
+        $response = $this->editPeriodeYudisiumService->execute($request);
+        $code = $response->getCode();
+
+        if ($code == 200) {
+            $this->flashSession->success($response->getResponse());
+        } else {
+            $this->flashSession->error($response->getResponse());
+        }
+
+        $this->response->redirect('/yudisium/edit/'.$wisuda);
+
+        // return $response->getResponse();
+    }
+
+    public function editAction($yudisium)
+    {   
+        $data = $this->GetYudisiumService->execute($yudisium);
+        $this->view->datas = $data->getResponse();
+        
+        // return $this->send($data->getResponse());
+        return $this->view->pick('edit');
     }
 
 

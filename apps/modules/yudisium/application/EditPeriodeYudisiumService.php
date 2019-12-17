@@ -8,7 +8,7 @@ use Idy\Yudisium\Domain\Model\Status;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumResponse;
 
 
-class CreateNewPeriodeYudisiumService
+class EditPeriodeYudisiumService
 {
     private $periodeYudisiumRepository;
 
@@ -17,10 +17,16 @@ class CreateNewPeriodeYudisiumService
         $this->periodeYudisiumRepository = $periodeYudisiumRepository;
     }
 
-    public function execute(CreateNewPeriodeYudisiumRequest $request)
+    public function execute(EditPeriodeYudisiumRequest $request)
     {
         $yudisium = new PeriodeYudisium($request->wisuda(), $request->urutan(), $request->tanggalawal(), $request->tanggalakhir(), new Status($request->status()));
-        $response = $this->periodeYudisiumRepository->create($yudisium);
+        $response = $this->periodeYudisiumRepository->edit($yudisium);
+
+        if ($response) {
+            return new EditPeriodeYudisiumResponse("Periode yudisium berhasil diubah!");
+        }
+
+        return new EditPeriodeYudisiumResponse("Terjadi error", 500);
     }
 
 }
