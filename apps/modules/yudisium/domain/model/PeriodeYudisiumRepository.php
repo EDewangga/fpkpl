@@ -9,4 +9,5 @@ interface PeriodeYudisiumRepository
     public function all();
     public function aktif();
     public function tidakAktif();
+    public function download(Status $status);
 }

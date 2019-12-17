@@ -1,7 +1,13 @@
 <?php
 
+use Idy\Yudisium\Application\CreateLaporanPeriodeYudisiumService;
+use Idy\Yudisium\Application\CreateNewMahasiswaService;
+use Idy\Yudisium\Infrastructure\SqlMahasiswaRepository;
 use Idy\Yudisium\Infrastructure\SqlPeriodeYudisiumRepository;
+use Idy\Yudisium\Infrastructure\SqlSyaratRepository;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumService;
+use Idy\Yudisium\Application\GetMahasiswaService;
+use Idy\Yudisium\Application\GetSyaratService;
 use Idy\Yudisium\Application\GetPeriodeYudisiumService;
 use Idy\Yudisium\Application\GetPeriodeYudisiumAktifService;
 use Idy\Yudisium\Application\GetPeriodeYudisiumTidakAktifService;
@@ -58,6 +64,13 @@ $di->setShared('sql_yudisium_repository', function () {
     return new SqlPeriodeYudisiumRepository();
 });
 
+$di->setShared('sql_syarat_repository', function () {
+    return new SqlSyaratRepository();
+});
+
+$di->setShared('sql_mahasiswa_repository', function () {
+    return new SqlMahasiswaRepository();
+});
 
 $di->set('createNewPeriodeYudisiumService', function () use ($di) {
     return new CreateNewPeriodeYudisiumService($di->get('sql_yudisium_repository'));
@@ -67,10 +80,30 @@ $di->set('getPeriodeYudisiumService', function () use ($di) {
     return new GetPeriodeYudisiumService($di->get('sql_yudisium_repository'));
 });
 
-$di->set('GetPeriodeYudisiumAktifService', function () use ($di) {
+$di->set('getPeriodeYudisiumAktifService', function () use ($di) {
     return new GetPeriodeYudisiumAktifService($di->get('sql_yudisium_repository'));
 });
 
-$di->set('GetPeriodeYudisiumTidakAktifService', function () use ($di) {
+$di->set('getPeriodeYudisiumTidakAktifService', function () use ($di) {
     return new GetPeriodeYudisiumTidakAktifService($di->get('sql_yudisium_repository'));
+});
+
+$di->set('createLaporanPeriodeYudisiumService', function () use ($di) {
+    return new CreateLaporanPeriodeYudisiumService($di->get('sql_yudisium_repository'));
+});
+
+$di->set('editPeriodeYudisiumService', function () use ($di) {
+    return new CreateNewPeriodeYudisiumService($di->get('sql_yudisium_repository'));
+});
+
+$di->set('getSyaratService', function () use ($di) {
+    return new GetSyaratService($di->get('sql_syarat_repository'));
+});
+
+$di->set('getMahasiswaService', function () use ($di) {
+    return new GetMahasiswaService($di->get('sql_mahasiswa_repository'));
+});
+
+$di->set('CreateNewMahasiswaService', function () use ($di) {
+    return new createNewMahasiswaService($di->get('sql_mahasiswa_repository'));
 });

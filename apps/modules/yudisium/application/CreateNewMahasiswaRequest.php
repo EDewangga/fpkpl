@@ -1,14 +1,14 @@
 <?php
 
-namespace Idy\Yudisium\Domain\Model;
+namespace Idy\Yudisium\Application;
 
-class Mahasiswa
+
+class CreateNewMahasiswaRequest
 {
     private $nrp;
     private $nama;
     private $ipk;
     private $wisuda;
-
     
     public function __construct($nrp, $nama, $ipk, $wisuda)
     {
@@ -18,7 +18,7 @@ class Mahasiswa
         $this->wisuda = $wisuda;
     }
 
-    public function nrp()
+    public function nrp() 
     {
         return $this->nrp;
     }
@@ -32,10 +32,9 @@ class Mahasiswa
     {
         return $this->ipk;
     }
+
     public function wisuda()
     {
         return $this->wisuda;
     }
-
-
 }

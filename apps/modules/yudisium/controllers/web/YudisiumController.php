@@ -3,6 +3,8 @@
 namespace Idy\Yudisium\Controllers\Web;
 
 use Idy\Common\Controllers\WebController;
+use Idy\Yudisium\Application\CreateLaporanPeriodeYudisiumRequest;
+use Idy\Yudisium\Application\CreateNewMahasiswaRequest;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumRequest;
 use Idy\Yudisium\Domain\Model\PeriodeYudisium;
 
@@ -12,11 +14,24 @@ class YudisiumController extends WebController
     protected $getPeriodeYudisiumService;
     protected $getPeriodeYudisiumAktifService;
     protected $GetPeriodeYudisiumTidakAktifService;
+    protected $createLaporanPeriodeYudisiumService;
+    protected $getSyaratService;
+    protected $getMahasiswaService;
+    protected $CreateNewMahasiswaService;
+    
     
     public function initialize()
     {
         $this->createNewPeriodeYudisiumService = $this->di->get('createNewPeriodeYudisiumService');
         $this->getPeriodeYudisiumService = $this->di->get('getPeriodeYudisiumService');
+        $this->getPeriodeYudisiumAktifService = $this->di->get('getPeriodeYudisiumAktifService');
+        $this->getPeriodeYudisiumTidakAktifService = $this->di->get('getPeriodeYudisiumTidakAktifService');
+        $this->createLaporanPeriodeYudisiumService = $this->di->get('createLaporanPeriodeYudisiumService');
+        $this->getSyaratService = $this->di->get('getSyaratService');
+        $this->getMahasiswaService = $this->di->get('getMahasiswaService');
+        $this->CreateNewMahasiswaService = $this->di->get('CreateNewMahasiswaService');
+
+        
     }
 
     public function indexAction()
@@ -27,13 +42,13 @@ class YudisiumController extends WebController
 
     public function aktifAction()
     {
-        $this->view->datas = $this->GetPeriodeYudisiumAktifService->execute();
+        $this->view->datas = $this->getPeriodeYudisiumAktifService->execute();
         return $this->view->pick('aktif');
     }
 
     public function tidakAktifAction()
     {
-        $this->view->datas = $this->GetPeriodeYudisiumTidakAktifService->execute();
+        $this->view->datas = $this->getPeriodeYudisiumTidakAktifService->execute(); 
         return $this->view->pick('tidakAktif');
     }
 
@@ -71,5 +86,53 @@ class YudisiumController extends WebController
     {
         $this->send($this->request->getPost());
     }
+
+    public function createLaporanAction()
+    {
+        $status = $this->request->getPost('status');
+        $request = new CreateLaporanPeriodeYudisiumRequest($status);
+        $response = $this->createLaporanPeriodeYudisiumService->execute($request);
+        $this->send($response);
+    }
+    
+    public function syaratAction()
+    {
+        $this->view->datas = $this->getSyaratService->execute();
+        return $this->view->pick('syarat');
+    }
+
+    public function mahasiswaAction()
+    {
+        $this->view->datas = $this->getMahasiswaService->execute();
+        return $this->view->pick('mahasiswa');
+    }
+
+    public function createMahasiswaAction()
+    {   
+        return $this->view->pick('addMahasiswa');
+    }
+
+    public function createMahasiswaPostAction()
+    {
+        $nrp = $this->request->getPost('nrp');
+        $nama = $this->request->getPost('nama');
+        $ipk = $this->request->getPost('ipk');
+        $wisuda = $this->request->getPost('wisuda');
+        $request = new CreateNewMahasiswaRequest($nrp, $nama, $ipk, $wisuda);
+        // return $nrp. $nama. $ipk. $wisuda;
+
+        $response = $this->CreateNewMahasiswaService->execute($request);
+        $code = $response->getCode();
+
+        if ($code == 200) {
+            $this->flashSession->success($response->getResponse());
+        } else {
+            $this->flashSession->error($response->getResponse());
+        }
+
+        $this->response->redirect('/mahasiswa/add');
+        // return $response->getResponse();
+    }
+
 
 }

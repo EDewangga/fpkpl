@@ -4,6 +4,7 @@ namespace Idy\Yudisium\Infrastructure;
 
 use Idy\Yudisium\Domain\Model\PeriodeYudisium;
 use Idy\Yudisium\Domain\Model\PeriodeYudisiumRepository;
+use Idy\Yudisium\Domain\Model\status;
 use Phalcon\Di;
 use PDO;
 
@@ -63,6 +64,16 @@ class SqlPeriodeYudisiumRepository implements PeriodeYudisiumRepository
         $statement = sprintf("SELECT * FROM periodeyudisium WHERE status = :status");
         $param = [
             'status' => 'tidak aktif'
+        ];
+
+        return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function download(Status $status)
+    {
+        $statement = sprintf("SELECT * FROM periodeyudisium WHERE status = :status");
+        $param = [
+            'status' => $status->status()
         ];
 
         return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);

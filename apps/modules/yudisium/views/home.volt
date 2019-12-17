@@ -16,6 +16,7 @@
         <th scope="col">tanggal awal</th>
         <th scope="col">tanggal akhir</th>
         <th scope="col">status</th>
+        <th scope="col">aksi</th>
       </tr>
     </thead>
     <tbody>

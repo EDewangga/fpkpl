@@ -4,7 +4,7 @@ namespace Idy\Yudisium\Domain\Model;
 
 // use Ramsey\Uuid\Uuid;
 
-class status
+class Status
 {
     private $status;
 
@@ -18,7 +18,7 @@ class status
         return $this->status;
     }
 
-    public function equals(status $status)
+    public function equals(Status $status)
     {
         return $this->status() === $status->status;
     }

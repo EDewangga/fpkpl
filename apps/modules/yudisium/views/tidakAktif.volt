@@ -8,7 +8,8 @@
 {% endblock %}
 
 {% block content %}
-<h1>Status Lulus</h1>
+datas.getResponse()
+<!-- <h1>Status Lulus</h1>
 <table class="table">
     <thead class="thead-dark">
       <tr>
@@ -32,6 +33,10 @@
     </tbody>
   </table>
   <a href="{{url('yudisium/add/')}}" role="button" class="btn btn-primary btn-lg">Tambah Data yudisium</a>&emsp;
+  <form action="{{url('yudisium/create-laporan')}}" method="POST">
+    <button type="submit" class="btn btn-primary">Download</button>
+    <input type="hidden" name="status" value="tidak aktif" >
+  </form> -->
 {% endblock %}
 
 {% block scripts %}
