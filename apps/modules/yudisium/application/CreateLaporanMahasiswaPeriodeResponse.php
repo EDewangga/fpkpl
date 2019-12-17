@@ -2,7 +2,7 @@
 
 namespace Idy\Yudisium\Application;
 
-class CreateLaporanPeriodeYudisiumResponse
+class CreateLaporanMahasiswaPeriodeResponse
 {
     private $response;
     private $code;

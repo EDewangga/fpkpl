@@ -38,7 +38,7 @@ $router->addGet('/yudisium/tidak-aktif', [
     'action' => 'tidakAktif'
 ]);
 
-$router->addPost('/yudisium/create-laporan', [
+$router->addGet('/mahasiswa/{wisuda}/create-laporan', [
     'namespace' => $namespace,
     'module' => 'yudisium',
     'controller' => 'yudisium',
@@ -93,4 +93,5 @@ $router->addGet('/yudisium/mahasiswa/{wisuda}', [
     'controller' => 'yudisium',
     'action' => 'getWisuda'
 ]);
+
 

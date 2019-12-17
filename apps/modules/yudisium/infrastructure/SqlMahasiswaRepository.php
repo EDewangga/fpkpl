@@ -49,5 +49,15 @@ class SqlMahasiswaRepository implements MahasiswaRepository
         return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);
 
     }
+    public function laporan(wisuda $wisuda)
+    {
+        $statement = sprintf("SELECT * FROM mahasiswa WHERE wisuda = :wisuda");
+        $param = [
+            'wisuda' => $wisuda->wisuda()
+        ];
+
+        return $this->dbManager->query($statement, $param)->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     
 }

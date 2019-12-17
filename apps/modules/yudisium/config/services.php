@@ -1,6 +1,4 @@
 <?php
-
-use Idy\Yudisium\Application\CreateLaporanPeriodeYudisiumService;
 use Idy\Yudisium\Application\CreateNewMahasiswaService;
 use Idy\Yudisium\Infrastructure\SqlMahasiswaRepository;
 use Idy\Yudisium\Infrastructure\SqlPeriodeYudisiumRepository;
@@ -14,6 +12,7 @@ use Idy\Yudisium\Application\GetPeriodeYudisiumTidakAktifService;
 use Idy\Yudisium\Application\GetMahasiswaPeriodeService;
 use Idy\Yudisium\Application\EditPeriodeYudisiumService;
 use Idy\Yudisium\Application\GetYudisiumService;
+use Idy\Yudisium\Application\CreateLaporanMahasiswaPeriodeService;
 
 use Phalcon\Mvc\View;
 
@@ -74,7 +73,6 @@ $di->setShared('sql_syarat_repository', function () {
 $di->setShared('sql_mahasiswa_repository', function () {
     return new SqlMahasiswaRepository();
 });
-
 $di->set('createNewPeriodeYudisiumService', function () use ($di) {
     return new CreateNewPeriodeYudisiumService($di->get('sql_yudisium_repository'));
 });
@@ -91,8 +89,8 @@ $di->set('getPeriodeYudisiumTidakAktifService', function () use ($di) {
     return new GetPeriodeYudisiumTidakAktifService($di->get('sql_yudisium_repository'));
 });
 
-$di->set('createLaporanPeriodeYudisiumService', function () use ($di) {
-    return new CreateLaporanPeriodeYudisiumService($di->get('sql_yudisium_repository'));
+$di->set('createLaporanMahasiswaPeriodeService', function () use ($di) {
+    return new CreateLaporanMahasiswaPeriodeService($di->get('sql_mahasiswa_repository'));
 });
 
 $di->set('editPeriodeYudisiumService', function () use ($di) {

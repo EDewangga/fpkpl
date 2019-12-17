@@ -31,7 +31,8 @@
     </tbody>
   </table>
 
-  <a href="{{url('')}}" role="button" class="btn btn-secondary btn-sm">Back</a>
+  <a href="{{url('mahasiswa')}}/{{wisuda}}/create-laporan" role="button" class="btn btn-success btn-lg">Download Laporan</a>
+  <a href="{{url('')}}" role="button" class="btn btn-secondary btn-sm">Back</a> 
 {% endblock %}
 
 {% block scripts %}

@@ -3,6 +3,7 @@
 namespace Idy\Yudisium\Controllers\Web;
 
 use Idy\Common\Controllers\WebController;
+use Idy\Yudisium\Application\CreateLaporanMahasiswaPeriodeRequest;
 use Idy\Yudisium\Application\CreateLaporanPeriodeYudisiumRequest;
 use Idy\Yudisium\Application\CreateNewMahasiswaRequest;
 use Idy\Yudisium\Application\CreateNewPeriodeYudisiumRequest;
@@ -22,6 +23,7 @@ class YudisiumController extends WebController
     protected $getMahasiswaPeriodeService;
     protected $editPeriodeYudisiumService;
     protected $GetYudisiumService;
+    protected $CreateLaporanMahasiswaPeriodeService;
     
     
     
@@ -31,13 +33,14 @@ class YudisiumController extends WebController
         $this->getPeriodeYudisiumService = $this->di->get('getPeriodeYudisiumService');
         $this->getPeriodeYudisiumAktifService = $this->di->get('getPeriodeYudisiumAktifService');
         $this->getPeriodeYudisiumTidakAktifService = $this->di->get('getPeriodeYudisiumTidakAktifService');
-        $this->createLaporanPeriodeYudisiumService = $this->di->get('createLaporanPeriodeYudisiumService');
         $this->getSyaratService = $this->di->get('getSyaratService');
         $this->getMahasiswaService = $this->di->get('getMahasiswaService');
         $this->CreateNewMahasiswaService = $this->di->get('CreateNewMahasiswaService');
         $this->getMahasiswaPeriodeService = $this->di->get('getMahasiswaPeriodeService');
         $this->editPeriodeYudisiumService = $this->di->get('editPeriodeYudisiumService');      
         $this->GetYudisiumService = $this->di->get('getYudisiumService');      
+        $this->CreateLaporanMahasiswaPeriodeService = $this->di->get('createLaporanMahasiswaPeriodeService');      
+        $this->createLaporanPeriodeYudisiumService = $this->di->get('createLaporanMahasiswaPeriodeService');
     }
 
     public function indexAction()
@@ -93,10 +96,9 @@ class YudisiumController extends WebController
         $this->send($this->request->getPost());
     }
 
-    public function createLaporanAction()
+    public function createLaporanAction($wisuda)
     {
-        $status = $this->request->getPost('status');
-        $request = new CreateLaporanPeriodeYudisiumRequest($status);
+        $request = new CreateLaporanMahasiswaPeriodeRequest($wisuda);
         $response = $this->createLaporanPeriodeYudisiumService->execute($request);
         $this->send($response);
     }
@@ -144,6 +146,7 @@ class YudisiumController extends WebController
     {
         $data = $this->getMahasiswaPeriodeService->execute($wisuda);
         $this->view->datas = $data;
+        $this->view->wisuda = $wisuda;
         // return $this->send(['ok'=> $data->getResponse()]);
         return $this->view->pick('mahasiswaPeriode');
     }
